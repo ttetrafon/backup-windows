@@ -1,17 +1,38 @@
 package com.ttetrafon;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+import com.ttetrafon.window.MainWindow;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+
+    static void main() {
+        SwingUtilities.invokeLater(() -> {
+            if (!SystemTray.isSupported()) return;
+
+            MainWindow window = new MainWindow();
+
+            PopupMenu menu = new PopupMenu();
+            MenuItem open = new MenuItem("Open");
+            menu.add(open);
+            MenuItem exit = new MenuItem("Exit");
+            menu.add(exit);
+
+            Image img = Toolkit.getDefaultToolkit()
+                    .getImage(Main.class.getResource("/icon.png"));
+            TrayIcon icon = new TrayIcon(img, "SI Backup", menu);
+            icon.setImageAutoSize(true);
+
+            open.addActionListener(e -> window.showWindow());
+            icon.addActionListener(e -> window.showWindow());
+            exit.addActionListener(e -> System.exit(0));
+
+            try {
+                SystemTray.getSystemTray().add(icon);
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
