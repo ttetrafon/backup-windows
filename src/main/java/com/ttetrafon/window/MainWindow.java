@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 public class MainWindow extends JFrame {
 
     public MainWindow() {
-        super("System Intelligence: Backup Utility");
+        super("System Intelligence: Windows Backup Utility");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null); // center on screen

@@ -1,5 +1,6 @@
 package com.ttetrafon;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.ttetrafon.window.MainWindow;
 
 import javax.swing.*;
@@ -8,6 +9,9 @@ import java.awt.*;
 public class Main {
 
     static void main() {
+
+        FlatDarkLaf.setup();
+
         SwingUtilities.invokeLater(() -> {
             if (!SystemTray.isSupported()) return;
 
