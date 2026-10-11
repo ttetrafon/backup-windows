@@ -28,6 +28,10 @@ public class Main {
             PopupMenu menu = new PopupMenu();
             MenuItem open = new MenuItem("Open");
             menu.add(open);
+            menu.addSeparator();
+            MenuItem backupNow = new MenuItem("Backup Now");
+            menu.add(backupNow);
+            menu.addSeparator();
             MenuItem exit = new MenuItem("Exit");
             menu.add(exit);
 
