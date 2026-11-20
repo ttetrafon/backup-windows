@@ -15,10 +15,10 @@ public class MainWindow extends JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null); // center on screen
 
-        WatchedDirectoriesModel model = new WatchedDirectoriesModel();
+        WatchedDirectoriesModel modelBackup = new WatchedDirectoriesModel();
 
         AddDirectoryPanel addDirectoryPanel = new AddDirectoryPanel(path -> {
-            if (!model.add(path)) {
+            if (!modelBackup.add(path)) {
                 JOptionPane.showMessageDialog(this, "That directory is already in the list.",
                         "Already added", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -26,7 +26,7 @@ public class MainWindow extends JFrame {
         addDirectoryPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
         add(addDirectoryPanel, BorderLayout.NORTH);
 
-        DirectoryListPanel directoryListPanel = new DirectoryListPanel(model);
+        DirectoryListPanel directoryListPanel = new DirectoryListPanel(modelBackup);
         directoryListPanel.setBorder(BorderFactory.createEmptyBorder(0, 12, 12, 12));
         add(directoryListPanel, BorderLayout.CENTER);
 
